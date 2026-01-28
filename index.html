@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>KSO VIP - ALL-IN-ONE COMPLETE</title>
+    <title>KSO VIP - FINAL COMPLETE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Zeyar&family=Montserrat:wght@800&display=swap" rel="stylesheet">
     
@@ -15,7 +15,6 @@
             --accent: #ff416c;
         }
 
-        /* ဆွဲတင်ဆွဲချပိတ်ရန် */
         html, body {
             margin: 0; padding: 0; width: 100%; height: 100%;
             overflow: hidden; touch-action: none;
@@ -26,7 +25,7 @@
         .main-wrapper {
             width: 100%; height: 100%;
             display: flex; flex-direction: column; align-items: center;
-            padding-top: 35px;
+            padding-top: 30px;
         }
 
         .content-section {
@@ -41,20 +40,20 @@
             border-radius: 20px; padding: 12px;
             border: 2px solid rgba(255, 255, 255, 0.6);
             box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-            overflow: hidden; /* Scroll ပိတ် */
         }
 
-        h2 { color: var(--text-main); font-family: 'Montserrat'; font-size: 0.95rem; margin: 0 0 10px 0; text-align: center; }
+        h2 { color: var(--text-main); font-family: 'Montserrat'; font-size: 0.9rem; margin: 0 0 10px 0; text-align: center; }
 
         /* ကျစ်လစ်သော Package UI */
-        .package-title { padding: 4px 10px; border-radius: 6px; font-weight: bold; margin: 5px 0 3px 0; font-size: 0.65rem; color: #fff; }
+        .package-title { padding: 4px 10px; border-radius: 6px; font-weight: bold; margin: 4px 0 3px 0; font-size: 0.65rem; color: #fff; }
         .bg-true { background: linear-gradient(90deg, #ff416c, #ff4b2b); }
         .bg-dtac { background: linear-gradient(90deg, #00c6ff, #0072ff); }
         .bg-ais { background: linear-gradient(90deg, #55efc4, #00b894); }
+        .bg-vip { background: linear-gradient(90deg, #6c5ce7, #a29bfe); }
 
-        .package-item { background: #fff; padding: 6px 12px; border-radius: 12px; margin-bottom: 4px; display: flex; justify-content: space-between; align-items: center; border-left: 5px solid transparent; }
-        .code { font-family: 'Montserrat'; font-weight: 800; color: #333; font-size: 0.95rem; display: block; }
-        .price { font-size: 0.65rem; color: #666; font-weight: bold; }
+        .package-item { background: #fff; padding: 6px 10px; border-radius: 12px; margin-bottom: 4px; display: flex; justify-content: space-between; align-items: center; border-left: 5px solid transparent; }
+        .code { font-family: 'Montserrat'; font-weight: 800; color: #333; font-size: 0.9rem; display: block; }
+        .price { font-size: 0.6rem; color: #666; font-weight: bold; }
 
         .call-btn { 
             background: #00d2d3; color: white; width: 32px; height: 32px; 
@@ -62,13 +61,13 @@
             text-decoration: none; box-shadow: 0 3px 0 #00a8ff; font-size: 14px;
         }
 
-        /* Config & Info Styles */
+        /* Config & Info */
         .copy-box { background: #fff; border-radius: 10px; padding: 8px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
         .copy-box span { font-size: 10px; color: #333; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 70%; }
         .copy-btn { background: var(--text-main); color: #fff; border: none; padding: 5px 10px; border-radius: 6px; font-size: 9px; cursor: pointer; }
 
         .info-btn { width: 100%; padding: 10px; border: none; border-radius: 10px; background: #fff; color: #01579b; font-weight: bold; font-size: 11px; margin-bottom: 5px; text-align: left; display: flex; justify-content: space-between; }
-        .info-content { display: none; background: #fff; border-radius: 10px; padding: 10px; font-size: 10px; line-height: 1.6; margin-top: -5px; margin-bottom: 5px; }
+        .info-content { display: none; background: #fff; border-radius: 10px; padding: 10px; font-size: 10px; line-height: 1.5; margin-top: -5px; margin-bottom: 5px; }
 
         /* Navigation */
         .bottom-nav { position: absolute; bottom: 15px; width: 92%; max-width: 400px; background: rgba(255, 255, 255, 0.9); display: flex; justify-content: space-around; padding: 8px 0; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
@@ -114,12 +113,12 @@
     <div id="info" class="content-section">
         <div class="card">
             <h2><i class="fas fa-info-circle"></i> ဗဟုသုတ</h2>
-            <button class="info-btn" onclick="toggleI('ai')">AIS (12Call) အချက်အလက် <i class="fas fa-chevron-down"></i></button>
-            <div id="ai" class="info-content">• ငွေစစ်: *121# | • နံပါတ်: *545#<br>• ပက်ကေ့စစ်: *121*3# | • Passport: *161#<br>• သက်တမ်းတိုး: *500*9# (၃၀ ဘတ်)</div>
-            <button class="info-btn" onclick="toggleI('di')">DTAC အချက်အလက် <i class="fas fa-chevron-down"></i></button>
-            <div id="di" class="info-content">• နံပါတ်: *102# | • ငွေစစ်: *101#<br>• သက်တမ်းတိုး: *113*30# (၁၂ ဘတ်)</div>
-            <button class="info-btn" onclick="toggleI('ti')">TRUE အချက်အလက် <i class="fas fa-chevron-down"></i></button>
-            <div id="ti" class="info-content">• နံပါတ်: *833# | • ငွေစစ်: *123#<br>• သက်တမ်းတိုး: *934*30# (၁၂ ဘတ်)</div>
+            <button class="info-btn" onclick="toggleI('ai')">AIS (12Call) Info <i class="fas fa-chevron-down"></i></button>
+            <div id="ai" class="info-content">• ငွေစစ်: *121# | နံပါတ်: *545#<br>• ပက်ကေ့စစ်: *121*3# | Passport: *161#<br>• သက်တမ်းတိုး: *500*9# (၃၀ ဘတ်)</div>
+            <button class="info-btn" onclick="toggleI('di')">DTAC Info <i class="fas fa-chevron-down"></i></button>
+            <div id="di" class="info-content">• နံပါတ်: *102# | ငွေစစ်: *101#<br>• သက်တမ်းတိုး: *113*30# (၁၂ ဘတ်)</div>
+            <button class="info-btn" onclick="toggleI('ti')">TRUE Info <i class="fas fa-chevron-down"></i></button>
+            <div id="ti" class="info-content">• နံပါတ်: *833# | ငွေစစ်: *123#<br>• သက်တမ်းတိုး: *934*30# (၁၂ ဘတ်)</div>
         </div>
     </div>
 
@@ -129,6 +128,9 @@
             <div class="package-item" style="border-left-color:#1877f2"><div><span class="code">Facebook</span><span class="price">KSO VIP Page</span></div><a href="https://www.facebook.com/share/1AGwfTarnk/" class="call-btn" style="background:#1877f2" onclick="vibrate()"><i class="fab fa-facebook-f"></i></a></div>
             <div class="package-item" style="border-left-color:#00B2FF"><div><span class="code">Messenger</span><span class="price">Direct Chat</span></div><a href="https://m.me/kyawsoe.oo.1292019" class="call-btn" style="background:#00B2FF" onclick="vibrate()"><i class="fab fa-facebook-messenger"></i></a></div>
             <div class="package-item" style="border-left-color:#229ED9"><div><span class="code">Telegram</span><span class="price">@kyawkso777</span></div><a href="https://t.me/kyawkso777" class="call-btn" style="background:#229ED9" onclick="vibrate()"><i class="fab fa-telegram-plane"></i></a></div>
+            
+            <div class="package-title bg-vip">VIP APPLICATION</div>
+            <div class="package-item" style="border-left-color:#6c5ce7"><div><span class="code">KSO VIP APK</span><span class="price">ဒေါင်းလုဒ်လုပ်ရန်</span></div><a href="https://github.com/1k2k-vip/Apk/releases/download/v1.07/KSO.VPN.apk" class="call-btn" style="background:#6c5ce7" onclick="vibrate()"><i class="fas fa-download"></i></a></div>
         </div>
     </div>
 
