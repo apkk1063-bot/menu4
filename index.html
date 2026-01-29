@@ -19,66 +19,100 @@
             --tg: #229ED9;
         }
 
-        html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; font-family: 'Zeyar', sans-serif; background: var(--bg); }
+        /* ၁။ UI တစ်ခုလုံး၏ စာလုံးအရွယ်အစား နှင့် နောက်ခံ */
+        html, body { 
+            margin: 0; padding: 0; width: 100%; height: 100%; 
+            overflow: hidden; font-family: 'Zeyar', sans-serif; 
+            background: var(--bg); 
+            font-size: 16px; /* ဒီနေရာမှာ စာလုံးအကြီးအသေး ပြင်နိုင်ပါတယ် */
+        }
+
         .main-wrapper { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; }
 
         .content-section { display: none; width: 92%; max-width: 400px; animation: fadeIn 0.4s ease-out; height: 82vh; overflow-y: auto; padding-top: 20px; padding-bottom: 150px; }
         .active-section { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
-        .card { background: #fff; border-radius: 30px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 20px; }
+        /* ၂။ Card များ၏ ပုံစံ (အရိပ် နှင့် ထောင့်ချိုး) */
+        .card { 
+            background: #fff; border-radius: 28px; padding: 22px; 
+            box-shadow: 0 12px 35px rgba(0,0,0,0.03); /* အရိပ်ကို အနုဆုံးထားခြင်း */
+            margin-bottom: 20px; 
+        }
+        
         h2 { color: #333; font-size: 1.1rem; text-align: center; margin-bottom: 25px; font-weight: 800; }
 
+        /* ၃။ အော်ပရေတာ ခေါင်းစဉ်များ */
         .op-tag { text-align: center; font-weight: 900; font-family: 'Montserrat'; font-size: 18px; margin: 25px 0 15px 0; letter-spacing: 2px; }
-        .op-tag::after { content: ''; display: block; width: 35px; height: 3px; background: currentColor; margin: 6px auto; border-radius: 10px; }
+        .op-tag::after { content: ''; display: block; width: 30px; height: 3px; background: currentColor; margin: 8px auto; border-radius: 10px; }
         
-        .list-item { background: #fcfcfc; padding: 15px; border-radius: 20px; display: flex; align-items: center; margin-bottom: 12px; border: 1px solid #f1f2f6; }
+        /* ၄။ စာရင်းများ (List Items) ကို ပိုသေသပ်အောင်လုပ်ခြင်း */
+        .list-item { 
+            background: #fcfcfc; padding: 16px; border-radius: 20px; 
+            display: flex; align-items: center; margin-bottom: 12px; 
+            border: 1px solid #f8f9fa; /* ဘောင်ကို ပါးပါးလေးပဲ ခတ်ခြင်း */
+        }
         .item-info { flex: 1; text-align: center; padding-left: 45px; } 
-        .item-info b { font-size: 15px; color: #2d3436; display: block; margin-bottom: 3px; }
-        .item-info small { color: #888; font-weight: bold; }
+        .item-info b { font-size: 16px; color: #2d3436; display: block; margin-bottom: 4px; }
+        .item-info small { color: #999; font-weight: bold; }
 
-        .btn-call { width: 45px; height: 45px; border-radius: 15px; display: flex; justify-content: center; align-items: center; text-decoration: none; color: white; font-size: 18px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        /* ၅။ ဖုန်းခေါ်ဆိုသည့် ခလုတ်ပုံစံ */
+        .btn-call { 
+            width: 48px; height: 48px; border-radius: 16px; 
+            display: flex; justify-content: center; align-items: center; 
+            text-decoration: none; color: white; font-size: 18px; 
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08); transition: 0.2s;
+        }
+        .btn-call:active { transform: scale(0.92); } /* နှိပ်လိုက်လျှင် တုန်သွားသော Effect */
 
-        .premium-free-card { background: #fff; border-radius: 30px; padding: 25px; text-align: center; margin-bottom: 18px; border: 1px solid #f1f2f6; }
-        .premium-free-card i { font-size: 45px; margin-bottom: 12px; display: block; cursor: pointer; }
-        .key-area { background: #f8f9fa; border-radius: 15px; padding: 12px; font-size: 9px; color: #888; word-break: break-all; margin: 15px 0; border: 1px dashed #ddd; }
-        .copy-btn-main { border: none; padding: 15px; border-radius: 18px; color: #fff; font-weight: 800; width: 100%; cursor: pointer; transition: 0.3s; font-family: 'Zeyar'; }
+        /* ၆။ အခမဲ့ဖိုင် ကတ်ပြားများ */
+        .premium-free-card { background: #fff; border-radius: 28px; padding: 25px; text-align: center; margin-bottom: 18px; border: 1px solid #f1f2f6; }
+        .premium-free-card i { font-size: 45px; margin-bottom: 15px; display: block; cursor: pointer; }
+        .key-area { background: #f8f9fa; border-radius: 14px; padding: 14px; font-size: 9px; color: #888; word-break: break-all; margin: 15px 0; border: 1px dashed #ddd; }
+        .copy-btn-main { border: none; padding: 16px; border-radius: 20px; color: #fff; font-weight: 800; width: 100%; cursor: pointer; transition: 0.3s; font-family: 'Zeyar'; font-size: 15px; }
 
-        .info-premium-box { background: #fff; padding: 18px; border-radius: 25px; display: flex; align-items: center; gap: 15px; margin-bottom: 12px; border: 1px solid #f1f2f6; cursor: pointer; }
-        .logo-circle { width: 50px; height: 50px; border-radius: 18px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 900; font-family: 'Montserrat'; font-size: 14px; }
+        /* ၇။ အချက်အလက် ဘောက်စ်များ */
+        .info-premium-box { background: #fff; padding: 18px; border-radius: 22px; display: flex; align-items: center; gap: 15px; margin-bottom: 12px; border: 1px solid #f1f2f6; cursor: pointer; }
+        .logo-circle { width: 52px; height: 52px; border-radius: 16px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 900; font-family: 'Montserrat'; font-size: 14px; }
 
-        .social-row { display: flex; justify-content: center; gap: 15px; margin: 20px 0; }
-        .social-btn { width: 55px; height: 55px; border-radius: 18px; display: flex; justify-content: center; align-items: center; color: #fff; text-decoration: none; font-size: 22px; transition: 0.3s; box-shadow: 0 8px 15px rgba(0,0,0,0.1); }
+        /* ၈။ လူမှုကွန်ရက် ခလုတ်များ */
+        .social-row { display: flex; justify-content: center; gap: 18px; margin: 25px 0; }
+        .social-btn { width: 56px; height: 56px; border-radius: 18px; display: flex; justify-content: center; align-items: center; color: #fff; text-decoration: none; font-size: 24px; transition: 0.3s; box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
         
+        /* ၉။ အက်ပ်ဒေါင်းလုဒ် ခလုတ် */
         .download-btn { background: linear-gradient(135deg, #6c5ce7, #a29bfe); color: #fff; padding: 18px 45px; border-radius: 22px; text-decoration: none; display: inline-block; font-weight: 800; margin-top: 15px; box-shadow: 0 10px 25px rgba(108, 92, 231, 0.3); font-family: 'Zeyar'; }
 
-        .bottom-nav { position: fixed; bottom: 0; width: 100%; max-width: 500px; background: #fff; display: flex; justify-content: space-around; padding: 12px 0 35px 0; border-radius: 35px 35px 0 0; box-shadow: 0 -10px 30px rgba(0,0,0,0.05); z-index: 1000; }
+        /* ၁၀။ အောက်ခြေ မီနူးဘား (Bottom Nav) */
+        .bottom-nav { 
+            position: fixed; bottom: 0; width: 100%; max-width: 500px; 
+            background: #fff; display: flex; justify-content: space-around; 
+            padding: 15px 0 35px 0; border-radius: 32px 32px 0 0; 
+            box-shadow: 0 -10px 35px rgba(0,0,0,0.04); z-index: 1000; 
+        }
         .nav-item { text-align: center; color: #bdc3c7; flex: 1; cursor: pointer; font-size: 11px; font-weight: bold; }
-        .nav-item i { font-size: 24px; display: block; margin-bottom: 5px; }
+        .nav-item i { font-size: 24px; display: block; margin-bottom: 6px; }
         .nav-item.active { color: var(--accent); }
 
-        /* Language Switcher Style */
-        .lang-card { background: #fff; border-radius: 25px; padding: 15px; margin-bottom: 20px; border: 1px solid #f1f2f6; }
+        .lang-card { background: #fff; border-radius: 25px; padding: 18px; margin-bottom: 20px; border: 1px solid #f1f2f6; }
         .lang-btn-group { display: flex; gap: 10px; margin-top: 10px; }
-        .lang-btn { flex: 1; padding: 10px; border-radius: 12px; border: 1px solid #eee; background: #f9f9f9; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        .lang-btn { flex: 1; padding: 12px; border-radius: 14px; border: 1px solid #eee; background: #f9f9f9; cursor: pointer; font-weight: bold; transition: 0.3s; font-family: 'Zeyar'; }
         .lang-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
 
-        /* Rest of existing styles... */
+        /* ၁၁။ Modal နှင့် Admin Panel ပုံစံ */
         .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 2000; display: none; flex-direction: column; }
-        .modal-header { padding: 20px; border-bottom: 1px solid #eee; display: flex; align-items: center; font-weight: bold; font-size: 18px; position: sticky; top: 0; background: #fff; z-index: 10; }
-        .modal-body { padding: 15px; flex: 1; background: #f8f9fa; overflow-y: auto; padding-bottom: 50px; }
-        .section-title { font-size: 14px; font-weight: bold; margin: 20px 0 10px 10px; padding-left: 10px; border-left: 4px solid; }
-        .note-text { font-size: 12px; color: #666; padding: 15px; background: #fff; border-radius: 15px; margin-bottom: 15px; line-height: 1.6; border: 1px solid #eee; }
+        .modal-header { padding: 22px; border-bottom: 1px solid #eee; display: flex; align-items: center; font-weight: bold; font-size: 18px; position: sticky; top: 0; background: #fff; z-index: 10; }
+        .modal-body { padding: 15px; flex: 1; background: #f8f9fa; overflow-y: auto; padding-bottom: 60px; }
+        .section-title { font-size: 14px; font-weight: bold; margin: 25px 0 12px 10px; padding-left: 10px; border-left: 4px solid; }
+        .note-text { font-size: 12px; color: #666; padding: 18px; background: #fff; border-radius: 18px; margin-bottom: 15px; line-height: 1.7; border: 1px solid #eee; }
 
         #admin-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(12px); z-index: 5000; display: none; align-items: center; justify-content: center; }
-        .admin-glass-card { width: 85%; max-width: 320px; background: #fff; border-radius: 35px; padding: 30px; text-align: center; }
-        .admin-input-box { width: 100%; padding: 15px; border-radius: 15px; border: 1px solid #eee; background: #f9f9f9; margin-bottom: 15px; outline: none; text-align: center; box-sizing: border-box; }
+        .admin-glass-card { width: 85%; max-width: 320px; background: #fff; border-radius: 35px; padding: 35px; text-align: center; }
+        .admin-input-box { width: 100%; padding: 16px; border-radius: 16px; border: 1px solid #eee; background: #f9f9f9; margin-bottom: 18px; outline: none; text-align: center; box-sizing: border-box; font-size: 16px; }
     </style>
 </head>
 <body>
 
 <div class="main-wrapper">
-
     <div id="smart" class="content-section">
         <div class="card">
             <h2 data-key="title-smart">အင်တာနက် ပက်ကေ့ချ်များ</h2>
@@ -89,8 +123,7 @@
             <div class="op-tag" style="color:var(--true)">TRUE</div>
             <div class="list-item"><div class="item-info"><b>*900*3507#</b><small data-key="true-1">၁ ရက်စာ (၆ ဘတ်)</small></div><a href="tel:*900*3507%23" class="btn-call" style="background:var(--true)"><i class="fas fa-phone-alt"></i></a></div>
             <div class="list-item"><div class="item-info"><b>*900*3508#</b><small data-key="true-7">၇ ရက်စာ (၂၁ ဘတ်)</small></div><a href="tel:*900*3508%23" class="btn-call" style="background:var(--true)"><i class="fas fa-phone-alt"></i></a></div>
-            <div class="list-item"><div class="item-info"><b>*900*3509#</b><small data-key="true-30">၃၀ ရက်စာ (၅၃ ဘတ်)</small></div><a href="tel:*900*3508%23" class="btn-call" style="background:var(--true)"><i class="fas fa-phone-alt"></i></a></div>
-            
+            <div class="list-item"><div class="item-info"><b>*900*3509#</b><small data-key="true-30">၃၀ ရက်စာ (၅၃ ဘတ်)</small></div><a href="tel:*900*3509%23" class="btn-call" style="background:var(--true)"><i class="fas fa-phone-alt"></i></a></div>
             
             <div class="op-tag" style="color:var(--ais)">AIS</div>
             <div class="list-item"><div class="item-info"><b>*777*7067#</b><small data-key="ais-30-1">၃၀ ရက်စာ (၃၀ ဘတ်)</small></div><a href="tel:*777*7067%23" class="btn-call" style="background:var(--ais)"><i class="fas fa-phone-alt"></i></a></div>
@@ -206,6 +239,7 @@
             'dtac-30': '၃၀ ရက်စာ (၃၀ ဘတ်)',
             'true-1': '၁ ရက်စာ (၆ ဘတ်)',
             'true-7': '၇ ရက်စာ (၂၁ ဘတ်)',
+            'true-30': '၃၀ ရက်စာ (၅၃ ဘတ်)',
             'ais-30-1': '၃၀ ရက်စာ (၃၀ ဘတ်)',
             'ais-30-2': '၃၀ ရက်စာ (၃၃ ဘတ်)',
             'title-free': 'အခမဲ့ အသုံးပြုရန် (V2Ray)',
@@ -242,6 +276,7 @@
             'dtac-30': '30 Days (30 Baht)',
             'true-1': '1 Day (6 Baht)',
             'true-7': '7 Days (21 Baht)',
+            'true-30': '30 Days (53 Baht)',
             'ais-30-1': '30 Days (30 Baht)',
             'ais-30-2': '30 Days (33 Baht)',
             'title-free': 'Free V2Ray Configs',
@@ -275,11 +310,8 @@
     };
 
     function changeLang(lang, btn) {
-        // Change active button style
         document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-
-        // Translate all elements with data-key
         document.querySelectorAll('[data-key]').forEach(el => {
             const key = el.getAttribute('data-key');
             if (langData[lang][key]) {
