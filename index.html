@@ -166,12 +166,12 @@
         </div>
     </div>
 
-    <div id="contact" class="section">
+        <div id="contact" class="section">
         <div class="contact-panel">
-            <p style="font-weight:bold; font-size:0.85rem; color:#666;">ဘာသာစကား (Language)</p>
+            <p id="lang-label" style="font-weight:bold; font-size:0.85rem; color:#666;">ဘာသာစကား (Language)</p>
             <div style="display:flex; gap:10px; margin:15px 0;">
-                <button style="flex:1; padding:12px; border-radius:12px; border:none; font-weight:bold; background:#7b61ff; color:#fff;">မြန်မာ</button>
-                <button style="flex:1; padding:12px; border-radius:12px; border:none; font-weight:bold; background:#f0f0f0;">English</button>
+                <button id="btn-my" onclick="changeLanguage('my')" style="flex:1; padding:12px; border-radius:12px; border:none; font-weight:bold; background:#7b61ff; color:#fff;">မြန်မာ</button>
+                <button id="btn-en" onclick="changeLanguage('en')" style="flex:1; padding:12px; border-radius:12px; border:none; font-weight:bold; background:#f0f0f0; color:#333;">English</button>
             </div>
             <div class="social-btns">
                 <a href="#" class="social-icon" style="background:#1877f2;"><i class="fab fa-facebook-f"></i></a>
@@ -180,7 +180,7 @@
             </div>
             <h2 style="color:#333;">KSO VIP APP</h2>
             <p style="font-size:0.8rem; color:#888; margin-bottom:5px;">ဗားရှင်း - ၁.၀၇</p>
-            <a href="#" class="download-btn"><i class="fas fa-download"></i> အက်ပ်ဒေါင်းလုဒ်လုပ်ရန်</a>
+            <a href="#" class="download-btn"><i class="fas fa-download"></i> <span id="dl-text">အက်ပ်ဒေါင်းလုဒ်လုပ်ရန်</span></a>
         </div>
     </div>
 </div>
