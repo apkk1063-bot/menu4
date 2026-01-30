@@ -16,7 +16,7 @@
         .active { display: block; animation: fadeIn 0.4s ease; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Menu 1: Smart UI (Centered Titles & Compact) */
+        /* Menu 1: Smart UI */
         .p-title { 
             font-size: 0.75rem; font-weight: bold; padding: 5px 20px; border-radius: 8px; 
             margin: 15px auto 8px auto; color: #fff; display: block; text-align: center; 
@@ -31,12 +31,12 @@
         .p-price { font-size: 0.7rem; color: #aaa; }
         .p-call { width: 32px; height: 32px; background: #28a745; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; font-size: 0.8rem; }
 
-        /* Menu 2: Key UI (Scrollable) */
+        /* Menu 2: Key UI */
         .key-scroll-area { max-height: 90px; overflow-y: auto; background: rgba(255,255,255,0.03); border-radius: 12px; padding: 10px; border: 1px dashed var(--border); margin-bottom: 8px; }
         .key-text { font-size: 0.95rem; font-weight: bold; word-break: break-all; display: block; text-align: center; color: #fff; }
         .copy-btn { width: 100%; padding: 10px; background: #333; border: none; border-radius: 10px; color: #fff; font-weight: bold; cursor: pointer; margin-bottom: 15px; font-size: 0.85rem; }
 
-        /* Menu 3: SIM Info (White Cards) */
+        /* Menu 3: SIM Info */
         .white-card { background: #fff; color: #333; border-radius: 15px; margin-bottom: 10px; overflow: hidden; }
         .card-header { padding: 12px; display: flex; align-items: center; cursor: pointer; }
         .sim-icon { width: 40px; height: 40px; border-radius: 10px; margin-right: 12px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: bold; flex-shrink: 0; }
@@ -111,15 +111,15 @@
         </div>
         <p style="text-align:center; color:#ff3131; font-weight:bold; font-size:0.8rem; margin-bottom:5px;">TRUE FREE KEY</p>
         <div class="key-scroll-area"><span id="out-true" class="key-text">TRUE-PHOON-PRO-V1.0.7-KEY</span></div>
-        <button onclick="copy('out-true')" class="copy-btn">COPY KEY</button>
+        <button onclick="copy('out-true', this)" class="copy-btn">COPY KEY</button>
         
         <p style="text-align:center; color:#00d2ff; font-weight:bold; font-size:0.8rem; margin-bottom:5px;">DTAC FREE KEY</p>
         <div class="key-scroll-area"><span id="out-dtac" class="key-text">DTAC-PHOON-PRO-V1.0.7-KEY</span></div>
-        <button onclick="copy('out-dtac')" class="copy-btn">COPY KEY</button>
+        <button onclick="copy('out-dtac', this)" class="copy-btn">COPY KEY</button>
 
         <p style="text-align:center; color:#39ff14; font-weight:bold; font-size:0.8rem; margin-bottom:5px;">AIS FREE KEY</p>
         <div class="key-scroll-area"><span id="out-ais" class="key-text">AIS-PHOON-PRO-V1.0.7-KEY</span></div>
-        <button onclick="copy('out-ais')" class="copy-btn">COPY KEY</button>
+        <button onclick="copy('out-ais', this)" class="copy-btn">COPY KEY</button>
     </div>
 
     <div id="sim" class="section">
@@ -166,39 +166,63 @@
         </div>
     </div>
 
-        <div id="contact" class="section">
+    <div id="contact" class="section">
         <div class="contact-panel">
-            <p id="lang-label" style="font-weight:bold; font-size:0.85rem; color:#666;">ဘာသာစကား (Language)</p>
+            <p id="lang-text" style="font-weight:bold; font-size:0.85rem; color:#666;">ဘာသာစကား (Language)</p>
             <div style="display:flex; gap:10px; margin:15px 0;">
-                <button id="btn-my" onclick="changeLanguage('my')" style="flex:1; padding:12px; border-radius:12px; border:none; font-weight:bold; background:#7b61ff; color:#fff;">မြန်မာ</button>
-                <button id="btn-en" onclick="changeLanguage('en')" style="flex:1; padding:12px; border-radius:12px; border:none; font-weight:bold; background:#f0f0f0; color:#333;">English</button>
+                <button id="btn-my" onclick="changeLang('my')" style="flex:1; padding:12px; border-radius:12px; border:none; font-weight:bold; background:#7b61ff; color:#fff;">မြန်မာ</button>
+                <button id="btn-en" onclick="changeLang('en')" style="flex:1; padding:12px; border-radius:12px; border:none; font-weight:bold; background:#f0f0f0; color:#333;">English</button>
             </div>
             <div class="social-btns">
-    <a href="https://www.facebook.com/သင့်အကောင့်အမည်" class="social-icon" style="background:#1877f2;"><i class="fab fa-facebook-f"></i></a>
-    
-    <a href="https://m.me/သင့်အကောင့်အမည်" class="social-icon" style="background:#0084ff;"><i class="fab fa-facebook-messenger"></i></a>
-    
-    <a href="https://t.me/သင့်အကောင့်အမည်" class="social-icon" style="background:#229ed9;"><i class="fab fa-telegram-plane"></i></a>
-</div>
-
+                <a href="https://www.facebook.com/kyawsoe.oo.1292019" class="social-icon" style="background:#1877f2;"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://m.me/kyawsoe.oo.1292019" class="social-icon" style="background:#0084ff;"><i class="fab fa-facebook-messenger"></i></a>
+                <a href="https://t.me/ksovip" class="social-icon" style="background:#229ed9;"><i class="fab fa-telegram-plane"></i></a>
+            </div>
             <h2 style="color:#333;">KSO VIP APP</h2>
             <p style="font-size:0.8rem; color:#888; margin-bottom:5px;">ဗားရှင်း - ၁.၀၇</p>
-            <a href="https://www.mediafire.com/file/သင့်အက်ပ်လင့်ခ်" class="download-btn">
-    <i class="fas fa-download"></i> 
-    <span id="dl-text">အက်ပ်ဒေါင်းလုဒ်လုပ်ရန်</span>
-</a>
+            <a href="https://github.com/1k2k-vip/Apk/releases/download/v1.07/KSO.VPN.apk" class="download-btn">
+                <i class="fas fa-download"></i> <span id="dl-text">အက်ပ်ဒေါင်းလုဒ်လုပ်ရန်</span>
+            </a>
         </div>
     </div>
 </div>
 
 <nav class="nav">
-    <div class="nav-item active" onclick="tab('smart', this)"><i class="fas fa-wifi"></i><span>စမတ်</span></div>
-    <div class="nav-item" onclick="tab('keys', this)"><i class="fas fa-gift"></i><span>အခမဲ့</span></div>
-    <div class="nav-item" onclick="tab('sim', this)"><i class="fas fa-info-circle"></i><span>အချက်အလက်</span></div>
-    <div class="nav-item" onclick="tab('contact', this)"><i class="fas fa-headset"></i><span>ဆက်သွယ်ရန်</span></div>
+    <div class="nav-item active" onclick="tab('smart', this)"><i class="fas fa-wifi"></i><span class="nav-txt">စမတ်</span></div>
+    <div class="nav-item" onclick="tab('keys', this)"><i class="fas fa-gift"></i><span class="nav-txt">အခမဲ့</span></div>
+    <div class="nav-item" onclick="tab('sim', this)"><i class="fas fa-info-circle"></i><span class="nav-txt">အချက်အလက်</span></div>
+    <div class="nav-item" onclick="tab('contact', this)"><i class="fas fa-headset"></i><span class="nav-txt">ဆက်သွယ်ရန်</span></div>
 </nav>
 
 <script>
+    // --- Language Function ---
+    const langData = {
+        my: { langT: "ဘာသာစကား (Language)", nav: ["စမတ်", "အခမဲ့", "အချက်အလက်", "ဆက်သွယ်ရန်"], dl: "အက်ပ်ဒေါင်းလုဒ်လုပ်ရန်", copy: "COPY KEY", copied: "COPIED! ✅" },
+        en: { langT: "Language Settings", nav: ["Smart", "Free Keys", "Info", "Contact"], dl: "Download APK", copy: "COPY KEY", copied: "COPIED! ✅" }
+    };
+    
+    let currentLang = 'my';
+
+    function changeLang(l) {
+        currentLang = l;
+        document.getElementById('lang-text').innerText = langData[l].langT;
+        document.getElementById('dl-text').innerText = langData[l].dl;
+        const navs = document.querySelectorAll('.nav-txt');
+        navs.forEach((n, i) => n.innerText = langData[l].nav[i]);
+        
+        // Update all copy buttons text
+        document.querySelectorAll('.copy-btn').forEach(btn => btn.innerText = langData[l].copy);
+
+        if(l==='my') {
+            document.getElementById('btn-my').style.background = '#7b61ff'; document.getElementById('btn-my').style.color = '#fff';
+            document.getElementById('btn-en').style.background = '#f0f0f0'; document.getElementById('btn-en').style.color = '#333';
+        } else {
+            document.getElementById('btn-en').style.background = '#7b61ff'; document.getElementById('btn-en').style.color = '#fff';
+            document.getElementById('btn-my').style.background = '#f0f0f0'; document.getElementById('btn-my').style.color = '#333';
+        }
+    }
+
+    // --- Admin Logic ---
     let clicks = 0;
     const ADMIN_PASS = "225775@@@";
 
@@ -240,9 +264,25 @@
         if(!open) el.classList.add('open');
     }
 
-    function copy(id) {
-        navigator.clipboard.writeText(document.getElementById(id).innerText);
-        alert("Key Copied!");
+    // --- SMART COPY (No Alert) ---
+    function copy(id, btn) {
+        const text = document.getElementById(id).innerText;
+        const el = document.createElement('textarea');
+        el.value = text;
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+
+        // Change button text instead of alert
+        const originalText = btn.innerText;
+        btn.innerText = langData[currentLang].copied;
+        btn.style.background = "#28a745"; // Success Green
+
+        setTimeout(() => {
+            btn.innerText = originalText;
+            btn.style.background = "#333"; // Back to original
+        }, 1500);
     }
 
     function closeModal(id) { document.getElementById(id).style.display = 'none'; }
@@ -259,3 +299,4 @@
 </script>
 </body>
 </html>
+ ဘယ်နေရာလဲ
