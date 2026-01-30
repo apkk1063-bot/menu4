@@ -3,352 +3,253 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>KSO VIP - MYANMAR PREMIUM</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Zeyar&family=Montserrat:wght@800&display=swap" rel="stylesheet">
-    
+    <title>PHOON SMART PRO</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root {
-            --bg: #f4f7f6;
-            --accent: #6c5ce7;
-            --dtac: #00acee;
-            --true: #ff4757;
-            --ais: #82c91e;
-            --fb: #1877f2;
-            --ms: #0084ff;
-            --tg: #229ED9;
+        :root { --bg: #000814; --accent: #7b61ff; --glass: rgba(255, 255, 255, 0.05); --border: rgba(255, 255, 255, 0.1); }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; transition: all 0.3s ease; }
+        body { background: var(--bg); color: #fff; height: 100vh; overflow: hidden; }
+        #canvas { position: fixed; top: 0; left: 0; z-index: -1; }
+
+        .main { flex: 1; height: calc(100vh - 85px); overflow-y: auto; padding: 12px; padding-bottom: 100px; }
+        .section { display: none; }
+        .active { display: block; animation: fadeIn 0.4s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Menu 1: Smart UI (Centered Titles & Compact) */
+        .p-title { 
+            font-size: 0.75rem; font-weight: bold; padding: 5px 20px; border-radius: 8px; 
+            margin: 15px auto 8px auto; color: #fff; display: block; text-align: center; 
+            width: fit-content; min-width: 140px; letter-spacing: 0.5px;
         }
-
-        /* ၁။ UI တစ်ခုလုံး၏ စာလုံးအရွယ်အစား နှင့် နောက်ခံ */
-        html, body { 
-            margin: 0; padding: 0; width: 100%; height: 100%; 
-            overflow: hidden; font-family: 'Zeyar', sans-serif; 
-            background: var(--bg); 
-            font-size: 16px; /* ဒီနေရာမှာ စာလုံးအကြီးအသေး ပြင်နိုင်ပါတယ် */
-        }
-
-        .main-wrapper { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; }
-
-        .content-section { display: none; width: 92%; max-width: 400px; animation: fadeIn 0.4s ease-out; height: 82vh; overflow-y: auto; padding-top: 20px; padding-bottom: 150px; }
-        .active-section { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* ၂။ Card များ၏ ပုံစံ (အရိပ် နှင့် ထောင့်ချိုး) */
-        .card { 
-            background: #fff; border-radius: 28px; padding: 22px; 
-            box-shadow: 0 12px 35px rgba(0,0,0,0.03); /* အရိပ်ကို အနုဆုံးထားခြင်း */
-            margin-bottom: 20px; 
-        }
+        .bg-true { background: #ff3131; box-shadow: 0 0 10px rgba(255, 49, 49, 0.3); } 
+        .bg-dtac { background: #00d2ff; color: #000; box-shadow: 0 0 10px rgba(0, 210, 255, 0.3); } 
+        .bg-ais { background: #39ff14; color: #000; box-shadow: 0 0 10px rgba(57, 255, 20, 0.3); }
         
-        h2 { color: #333; font-size: 1.1rem; text-align: center; margin-bottom: 25px; font-weight: 800; }
+        .p-item { background: rgba(255,255,255,0.06); border: 1px solid var(--border); border-radius: 12px; padding: 6px 15px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .p-code { font-size: 0.95rem; font-weight: bold; color: #fff; }
+        .p-price { font-size: 0.7rem; color: #aaa; }
+        .p-call { width: 32px; height: 32px; background: #28a745; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; font-size: 0.8rem; }
 
-        /* ၃။ အော်ပရေတာ ခေါင်းစဉ်များ */
-        .op-tag { text-align: center; font-weight: 900; font-family: 'Montserrat'; font-size: 18px; margin: 25px 0 15px 0; letter-spacing: 2px; }
-        .op-tag::after { content: ''; display: block; width: 30px; height: 3px; background: currentColor; margin: 8px auto; border-radius: 10px; }
-        
-        /* ၄။ စာရင်းများ (List Items) ကို ပိုသေသပ်အောင်လုပ်ခြင်း */
-        .list-item { 
-            background: #fcfcfc; padding: 16px; border-radius: 20px; 
-            display: flex; align-items: center; margin-bottom: 12px; 
-            border: 1px solid #f8f9fa; /* ဘောင်ကို ပါးပါးလေးပဲ ခတ်ခြင်း */
-        }
-        .item-info { flex: 1; text-align: center; padding-left: 45px; } 
-        .item-info b { font-size: 16px; color: #2d3436; display: block; margin-bottom: 4px; }
-        .item-info small { color: #999; font-weight: bold; }
+        /* Menu 2: Key UI (Scrollable) */
+        .key-scroll-area { max-height: 90px; overflow-y: auto; background: rgba(255,255,255,0.03); border-radius: 12px; padding: 10px; border: 1px dashed var(--border); margin-bottom: 8px; }
+        .key-text { font-size: 0.95rem; font-weight: bold; word-break: break-all; display: block; text-align: center; color: #fff; }
+        .copy-btn { width: 100%; padding: 10px; background: #333; border: none; border-radius: 10px; color: #fff; font-weight: bold; cursor: pointer; margin-bottom: 15px; font-size: 0.85rem; }
 
-        /* ၅။ ဖုန်းခေါ်ဆိုသည့် ခလုတ်ပုံစံ */
-        .btn-call { 
-            width: 48px; height: 48px; border-radius: 16px; 
-            display: flex; justify-content: center; align-items: center; 
-            text-decoration: none; color: white; font-size: 18px; 
-            box-shadow: 0 6px 15px rgba(0,0,0,0.08); transition: 0.2s;
-        }
-        .btn-call:active { transform: scale(0.92); } /* နှိပ်လိုက်လျှင် တုန်သွားသော Effect */
+        /* Menu 3: SIM Info (White Cards) */
+        .white-card { background: #fff; color: #333; border-radius: 15px; margin-bottom: 10px; overflow: hidden; }
+        .card-header { padding: 12px; display: flex; align-items: center; cursor: pointer; }
+        .sim-icon { width: 40px; height: 40px; border-radius: 10px; margin-right: 12px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: bold; flex-shrink: 0; }
+        .details-content { max-height: 0; overflow: hidden; background: #f9f9f9; padding: 0 15px; transition: 0.3s ease-out; }
+        .details-content.open { max-height: 1500px; padding: 15px; border-top: 1px solid #eee; }
+        .details-text { font-size: 0.8rem; line-height: 1.6; color: #444; white-space: pre-line; }
 
-        /* ၆။ အခမဲ့ဖိုင် ကတ်ပြားများ */
-        .premium-free-card { background: #fff; border-radius: 28px; padding: 25px; text-align: center; margin-bottom: 18px; border: 1px solid #f1f2f6; }
-        .premium-free-card i { font-size: 45px; margin-bottom: 15px; display: block; cursor: pointer; }
-        .key-area { background: #f8f9fa; border-radius: 14px; padding: 14px; font-size: 9px; color: #888; word-break: break-all; margin: 15px 0; border: 1px dashed #ddd; }
-        .copy-btn-main { border: none; padding: 16px; border-radius: 20px; color: #fff; font-weight: 800; width: 100%; cursor: pointer; transition: 0.3s; font-family: 'Zeyar'; font-size: 15px; }
+        /* Menu 4: Contact */
+        .contact-panel { background: #fff; color: #333; border-radius: 35px; padding: 25px; text-align: center; }
+        .social-btns { display: flex; justify-content: center; gap: 15px; margin: 20px 0; }
+        .social-icon { width: 55px; height: 55px; border-radius: 18px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.5rem; text-decoration: none; }
+        .download-btn { background: linear-gradient(135deg, #7b61ff, #a48fff); color: white; padding: 18px; border-radius: 22px; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 10px; font-weight: bold; margin-top: 25px; }
 
-        /* ၇။ အချက်အလက် ဘောက်စ်များ */
-        .info-premium-box { background: #fff; padding: 18px; border-radius: 22px; display: flex; align-items: center; gap: 15px; margin-bottom: 12px; border: 1px solid #f1f2f6; cursor: pointer; }
-        .logo-circle { width: 52px; height: 52px; border-radius: 16px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 900; font-family: 'Montserrat'; font-size: 14px; }
-
-        /* ၈။ လူမှုကွန်ရက် ခလုတ်များ */
-        .social-row { display: flex; justify-content: center; gap: 18px; margin: 25px 0; }
-        .social-btn { width: 56px; height: 56px; border-radius: 18px; display: flex; justify-content: center; align-items: center; color: #fff; text-decoration: none; font-size: 24px; transition: 0.3s; box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
-        
-        /* ၉။ အက်ပ်ဒေါင်းလုဒ် ခလုတ် */
-        .download-btn { background: linear-gradient(135deg, #6c5ce7, #a29bfe); color: #fff; padding: 18px 45px; border-radius: 22px; text-decoration: none; display: inline-block; font-weight: 800; margin-top: 15px; box-shadow: 0 10px 25px rgba(108, 92, 231, 0.3); font-family: 'Zeyar'; }
-
-        /* ၁၀။ အောက်ခြေ မီနူးဘား (Bottom Nav) */
-        .bottom-nav { 
-            position: fixed; bottom: 0; width: 100%; max-width: 500px; 
-            background: #fff; display: flex; justify-content: space-around; 
-            padding: 15px 0 35px 0; border-radius: 32px 32px 0 0; 
-            box-shadow: 0 -10px 35px rgba(0,0,0,0.04); z-index: 1000; 
-        }
-        .nav-item { text-align: center; color: #bdc3c7; flex: 1; cursor: pointer; font-size: 11px; font-weight: bold; }
-        .nav-item i { font-size: 24px; display: block; margin-bottom: 6px; }
+        /* Navigation */
+        .nav { position: fixed; bottom: 0; width: 100%; height: 85px; background: #fff; display: flex; justify-content: space-around; align-items: center; border-radius: 30px 30px 0 0; box-shadow: 0 -5px 15px rgba(0,0,0,0.1); }
+        .nav-item { color: #ccc; text-align: center; flex: 1; cursor: pointer; }
         .nav-item.active { color: var(--accent); }
+        .nav-item i { font-size: 1.4rem; }
+        .nav-item span { display: block; font-size: 0.7rem; margin-top: 4px; font-weight: bold; }
 
-        .lang-card { background: #fff; border-radius: 25px; padding: 18px; margin-bottom: 20px; border: 1px solid #f1f2f6; }
-        .lang-btn-group { display: flex; gap: 10px; margin-top: 10px; }
-        .lang-btn { flex: 1; padding: 12px; border-radius: 14px; border: 1px solid #eee; background: #f9f9f9; cursor: pointer; font-weight: bold; transition: 0.3s; font-family: 'Zeyar'; }
-        .lang-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
-
-        /* ၁၁။ Modal နှင့် Admin Panel ပုံစံ */
-        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 2000; display: none; flex-direction: column; }
-        .modal-header { padding: 22px; border-bottom: 1px solid #eee; display: flex; align-items: center; font-weight: bold; font-size: 18px; position: sticky; top: 0; background: #fff; z-index: 10; }
-        .modal-body { padding: 15px; flex: 1; background: #f8f9fa; overflow-y: auto; padding-bottom: 60px; }
-        .section-title { font-size: 14px; font-weight: bold; margin: 25px 0 12px 10px; padding-left: 10px; border-left: 4px solid; }
-        .note-text { font-size: 12px; color: #666; padding: 18px; background: #fff; border-radius: 18px; margin-bottom: 15px; line-height: 1.7; border: 1px solid #eee; }
-
-        #admin-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(12px); z-index: 5000; display: none; align-items: center; justify-content: center; }
-        .admin-glass-card { width: 85%; max-width: 320px; background: #fff; border-radius: 35px; padding: 35px; text-align: center; }
-        .admin-input-box { width: 100%; padding: 16px; border-radius: 16px; border: 1px solid #eee; background: #f9f9f9; margin-bottom: 18px; outline: none; text-align: center; box-sizing: border-box; font-size: 16px; }
+        /* Overlays */
+        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.96); z-index: 1000; align-items: center; justify-content: center; padding: 20px; }
+        .admin-box { background: #111; border: 1px solid var(--accent); border-radius: 25px; padding: 25px; text-align: center; width: 100%; max-width: 350px; }
+        .admin-box input { width: 100%; padding: 12px; background: #222; border: 1px solid #444; color: #fff; border-radius: 12px; margin-bottom: 12px; text-align: center; outline: none; }
     </style>
 </head>
 <body>
 
-<div class="main-wrapper">
-    <div id="smart" class="content-section">
-        <div class="card">
-            <h2 data-key="title-smart">အင်တာနက် ပက်ကေ့ချ်များ</h2>
-            <div class="op-tag" style="color:var(--dtac)">DTAC</div>
-            <div class="list-item"><div class="item-info"><b>*177*15#</b><small data-key="dtac-15">၁၅ ရက်စာ (၁၅ ဘတ်)</small></div><a href="tel:*177*15%23" class="btn-call" style="background:var(--dtac)"><i class="fas fa-phone-alt"></i></a></div>
-            <div class="list-item"><div class="item-info"><b>*177*30#</b><small data-key="dtac-30">၃၀ ရက်စာ (၃၀ ဘတ်)</small></div><a href="tel:*177*30%23" class="btn-call" style="background:var(--dtac)"><i class="fas fa-phone-alt"></i></a></div>
-            
-            <div class="op-tag" style="color:var(--true)">TRUE</div>
-            <div class="list-item"><div class="item-info"><b>*900*3507#</b><small data-key="true-1">၁ ရက်စာ (၆ ဘတ်)</small></div><a href="tel:*900*3507%23" class="btn-call" style="background:var(--true)"><i class="fas fa-phone-alt"></i></a></div>
-            <div class="list-item"><div class="item-info"><b>*900*3508#</b><small data-key="true-7">၇ ရက်စာ (၂၁ ဘတ်)</small></div><a href="tel:*900*3508%23" class="btn-call" style="background:var(--true)"><i class="fas fa-phone-alt"></i></a></div>
-            <div class="list-item"><div class="item-info"><b>*900*3509#</b><small data-key="true-30">၃၀ ရက်စာ (၅၃ ဘတ်)</small></div><a href="tel:*900*3509%23" class="btn-call" style="background:var(--true)"><i class="fas fa-phone-alt"></i></a></div>
-            
-            <div class="op-tag" style="color:var(--ais)">AIS</div>
-            <div class="list-item"><div class="item-info"><b>*777*7067#</b><small data-key="ais-30-1">၃၀ ရက်စာ (၃၀ ဘတ်)</small></div><a href="tel:*777*7067%23" class="btn-call" style="background:var(--ais)"><i class="fas fa-phone-alt"></i></a></div>
-            <div class="list-item"><div class="item-info"><b>*777*7068#</b><small data-key="ais-30-2">၃၀ ရက်စာ (၃၃ ဘတ်)</small></div><a href="tel:*777*7068%23" class="btn-call" style="background:var(--ais)"><i class="fas fa-phone-alt"></i></a></div>
-        </div>
-    </div>
+<canvas id="canvas"></canvas>
 
-    <div id="free" class="content-section active-section">
-        <div class="card">
-            <h2 data-key="title-free">အခမဲ့ အသုံးပြုရန် (V2Ray)</h2>
-            <div class="premium-free-card">
-                <i class="fas fa-shield-halved" style="color:var(--dtac)" onclick="adminTrigger()"></i>
-                <b style="color:var(--dtac)" data-key="dtac-free">DTAC အခမဲ့ဖိုင်</b>
-                <div id="k-dtac" class="key-area">vless://DTAC_CONFIG_HERE</div>
-                <button onclick="copy('k-dtac', this)" class="copy-btn-main" style="background:var(--dtac)" data-key="btn-copy">ကူးယူမည်</button>
-            </div>
-            <div class="premium-free-card">
-                <i class="fas fa-bolt-lightning" style="color:var(--true)"></i>
-                <b style="color:var(--true)" data-key="true-free">TRUE အခမဲ့ဖိုင်</b>
-                <div id="k-true" class="key-area">vless://TRUE_CONFIG_HERE</div>
-                <button onclick="copy('k-true', this)" class="copy-btn-main" style="background:var(--true)" data-key="btn-copy">ကူးယူမည်</button>
-            </div>
-            <div class="premium-free-card">
-                <i class="fas fa-tower-broadcast" style="color:var(--ais)"></i>
-                <b style="color:var(--ais)" data-key="ais-free">AIS အခမဲ့ဖိုင်</b>
-                <div id="k-ais" class="key-area">vmess://AIS_CONFIG_HERE</div>
-                <button onclick="copy('k-ais', this)" class="copy-btn-main" style="background:var(--ais)" data-key="btn-copy">ကူးယူမည်</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="info" class="content-section">
-        <div class="card">
-            <h2 data-key="title-info">ဆင်းမ်ကတ် အချက်အလက်</h2>
-            <div class="info-premium-box" onclick="openM('m-dtac')">
-                <div class="logo-circle" style="background:var(--dtac)">dtac</div>
-                <div><b data-key="info-dtac-title">DTAC အချက်အလက်</b><br><small style="color:#999" data-key="info-sub">အသေးစိတ် အချက်အလက်များ</small></div>
-            </div>
-            <div class="info-premium-box" onclick="openM('m-true')">
-                <div class="logo-circle" style="background:var(--true)">true</div>
-                <div><b data-key="info-true-title">TRUE အချက်အလက်</b><br><small style="color:#999" data-key="info-sub">အသေးစိတ် အချက်အလက်များ</small></div>
-            </div>
-            <div class="info-premium-box" onclick="openM('m-ais')">
-                <div class="logo-circle" style="background:var(--ais)">AIS</div>
-                <div><b data-key="info-ais-title">AIS အချက်အလက်</b><br><small style="color:#999" data-key="info-sub">အသေးစိတ် အချက်အလက်များ</small></div>
-            </div>
-        </div>
-    </div>
-
-    <div id="contact" class="content-section">
-        <div class="card" style="text-align:center;">
-            <div class="lang-card">
-                <p style="font-weight:bold; font-size:14px; margin-bottom:10px;" data-key="lang-title">ဘာသာစကား (Language)</p>
-                <div class="lang-btn-group">
-                    <button class="lang-btn active" onclick="changeLang('my', this)">မြန်မာ</button>
-                    <button class="lang-btn" onclick="changeLang('en', this)">English</button>
-                </div>
-            </div>
-
-            <h2 data-key="title-contact">ကျွန်ုပ်တို့နှင့် ဆက်သွယ်ရန်</h2>
-            <div class="social-row">
-                <a href="https://www.facebook.com/share/1AGwfTarnk/" class="social-btn" style="background:var(--fb)"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://m.me/kyawkso777" class="social-btn" style="background:var(--ms)"><i class="fab fa-facebook-messenger"></i></a>
-                <a href="https://t.me/kyawkso777" class="social-btn" style="background:var(--tg)"><i class="fab fa-telegram-plane"></i></a>
-            </div>
-            <hr style="border: 0; border-top: 1px solid #eee; margin: 25px 0;">
-            <p style="font-weight:bold; color:#333; margin-bottom: 5px;">KSO VIP APP</p>
-            <p style="font-size: 12px; color: #888; margin-bottom: 20px;" data-key="app-ver">ဗားရှင်း - ၁.၀၇</p>
-            <a href="https://github.com/1k2k-vip/Apk/releases/download/v1.07/KSO.VPN.apk" class="download-btn">
-                <i class="fas fa-download"></i> <span data-key="btn-dl">အက်ပ်ဒေါင်းလုဒ်လုပ်ရန်</span>
-            </a>
-        </div>
-    </div>
-
-    <div id="m-dtac" class="modal">
-        <div class="modal-header"><i class="fas fa-chevron-left" onclick="closeM('m-dtac')" style="margin-right:20px; cursor:pointer;"></i> DTAC <span data-key="modal-detail">အသေးစိတ်</span></div>
-        <div class="modal-body">
-            <div class="section-title" style="color:var(--dtac); border-left-color:var(--dtac);" data-key="m-service">အခြေခံ ဝန်ဆောင်မှု</div>
-            <div class="list-item"><div class="item-info"><b data-key="check-bal">ငွေစစ်ရန်</b><small>*101#</small></div><a href="tel:*101%23" class="btn-call" style="background:var(--dtac)"><i class="fas fa-phone-alt"></i></a></div>
-            <div class="list-item"><div class="item-info"><b data-key="check-num">နံပါတ်စစ်ရန်</b><small>*102#</small></div><a href="tel:*102%23" class="btn-call" style="background:var(--dtac)"><i class="fas fa-phone-alt"></i></a></div>
-            <div class="list-item"><div class="item-info"><b data-key="check-int">အင်တာနက်စစ်</b><small>*101*1#</small></div><a href="tel:*101*1%23" class="btn-call" style="background:var(--dtac)"><i class="fas fa-phone-alt"></i></a></div>
-            <div class="section-title" style="color:var(--dtac); border-left-color:var(--dtac);" data-key="m-renew">သက်တမ်းတိုးရန်</div>
-            <div class="list-item"><div class="item-info"><b data-key="30day-3b">၃၀ ရက် (၃ ဘတ်)</b><small>*113*30#</small></div><a href="tel:*113*30%23" class="btn-call" style="background:var(--dtac)"><i class="fas fa-phone-alt"></i></a></div>
-            <div class="note-text"><b data-key="topup-method">ငွေဖြည့်နည်း:</b> *100*ကဒ်နံပါတ်# <br><b data-key="call-mm">မြန်မာပြည်ခေါ်ရန်:</b> 0040095 ခံခေါ်ပါ။</div>
-        </div>
-    </div>
-
-    <div id="admin-modal">
-        <div class="admin-glass-card">
-            <i class="fas fa-lock" style="font-size:40px; color:var(--accent); margin-bottom:15px;"></i>
-            <h3>Admin Login</h3>
-            <input type="password" id="admin-pass" class="admin-input-box" placeholder="Password">
-            <div style="display:flex; gap:10px;">
-                <button onclick="hideAdmin()" style="flex:1; padding:12px; border-radius:12px; border:none; background:#f1f2f6; font-weight:bold;">Cancel</button>
-                <button onclick="checkAdmin()" style="flex:1; padding:12px; border-radius:12px; border:none; background:var(--accent); color:#fff; font-weight:bold;">Login</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="bottom-nav">
-        <div class="nav-item" onclick="showP('smart', this)"><i class="fas fa-wifi"></i><span data-key="nav-smart">စမတ်</span></div>
-        <div class="nav-item active" onclick="showP('free', this)"><i class="fas fa-gift"></i><span data-key="nav-free">အခမဲ့</span></div>
-        <div class="nav-item" onclick="showP('info', this)"><i class="fas fa-circle-info"></i><span data-key="nav-info">အချက်အလက်</span></div>
-        <div class="nav-item" onclick="showP('contact', this)"><i class="fas fa-headset"></i><span data-key="nav-contact">ဆက်သွယ်ရန်</span></div>
+<div id="pass-modal" class="overlay">
+    <div class="admin-box">
+        <h3 style="color:var(--accent); margin-bottom:15px;">LOGIN</h3>
+        <input type="password" id="admin-pass-input" placeholder="Enter Password">
+        <button onclick="checkPassword()" style="width:100%; padding:15px; background:var(--accent); border:none; border-radius:12px; color:#fff; font-weight:bold;">ENTER</button>
+        <button onclick="closeModal('pass-modal')" style="background:none; color:#666; border:none; margin-top:10px;">Cancel</button>
     </div>
 </div>
 
+<div id="admin-panel" class="overlay">
+    <div class="admin-box">
+        <h3 style="color:var(--accent); margin-bottom:15px;">SET NEW KEYS</h3>
+        <input type="text" id="in-true" placeholder="New True Key">
+        <input type="text" id="in-dtac" placeholder="New Dtac Key">
+        <input type="text" id="in-ais" placeholder="New Ais Key">
+        <button onclick="saveKeys()" style="width:100%; padding:15px; background:var(--accent); border:none; border-radius:12px; color:#fff; font-weight:bold;">SAVE ALL</button>
+    </div>
+</div>
+
+<div class="main">
+    <div id="smart" class="section active">
+        <div class="p-title bg-true">TRUE-TWITTER ⬇</div>
+        <div class="p-item"><div><span class="p-code">*900*3507#</span><br><span class="p-price">၁ ရက်စာ (၆ ဘတ်)</span></div><a href="tel:*900*3507%23" class="p-call"><i class="fas fa-phone-alt"></i></a></div>
+        <div class="p-item"><div><span class="p-code">*900*3508#</span><br><span class="p-price">၇ ရက်စာ (၂၁ ဘတ်)</span></div><a href="tel:*900*3508%23" class="p-call"><i class="fas fa-phone-alt"></i></a></div>
+        <div class="p-item"><div><span class="p-code">*900*3509#</span><br><span class="p-price">၃၀ ရက်စာ (၅၃ ဘတ်)</span></div><a href="tel:*900*3509%23" class="p-call"><i class="fas fa-phone-alt"></i></a></div>
+
+        <div class="p-title bg-true">TRUE-VDO ⬇</div>
+        <div class="p-item"><div><span class="p-code">*900*8234#</span><br><span class="p-price">၃၀ ရက်စာ (၈၅ ဘတ်)</span></div><a href="tel:*900*8234%23" class="p-call"><i class="fas fa-phone-alt"></i></a></div>
+
+        <div class="p-title bg-dtac">DTAC-UDP ⬇</div>
+        <div class="p-item"><div><span class="p-code">*177*15#</span><br><span class="p-price">၁၅ ရက်စာ (၁၅ ဘတ်)</span></div><a href="tel:*177*15%23" class="p-call"><i class="fas fa-phone-alt"></i></a></div>
+        <div class="p-item"><div><span class="p-code">*177*30#</span><br><span class="p-price">၃၀ ရက်စာ (၃၀ ဘတ်)</span></div><a href="tel:*177*30%23" class="p-call"><i class="fas fa-phone-alt"></i></a></div>
+
+        <div class="p-title bg-ais">AIS-64Kbps ⬇</div>
+        <div class="p-item"><div><span class="p-code">*777*7067#</span><br><span class="p-price">၃၀ ရက်စာ (၃၀ ဘတ်)</span></div><a href="tel:*777*7067%23" class="p-call"><i class="fas fa-phone-alt"></i></a></div>
+        <div class="p-item"><div><span class="p-code">*777*7068#</span><br><span class="p-price">၃၀ ရက်စာ (၃၃ ဘတ်)</span></div><a href="tel:*777*7068%23" class="p-call"><i class="fas fa-phone-alt"></i></a></div>
+    </div>
+
+    <div id="keys" class="section">
+        <div style="text-align:center; margin-bottom:15px;">
+            <i class="fas fa-shield-alt" style="color:#ff3131; font-size:2.5rem; cursor:pointer;" onclick="adminClick()"></i>
+        </div>
+        <p style="text-align:center; color:#ff3131; font-weight:bold; font-size:0.8rem; margin-bottom:5px;">TRUE FREE KEY</p>
+        <div class="key-scroll-area"><span id="out-true" class="key-text">TRUE-PHOON-PRO-V1.0.7-KEY</span></div>
+        <button onclick="copy('out-true')" class="copy-btn">COPY KEY</button>
+        
+        <p style="text-align:center; color:#00d2ff; font-weight:bold; font-size:0.8rem; margin-bottom:5px;">DTAC FREE KEY</p>
+        <div class="key-scroll-area"><span id="out-dtac" class="key-text">DTAC-PHOON-PRO-V1.0.7-KEY</span></div>
+        <button onclick="copy('out-dtac')" class="copy-btn">COPY KEY</button>
+
+        <p style="text-align:center; color:#39ff14; font-weight:bold; font-size:0.8rem; margin-bottom:5px;">AIS FREE KEY</p>
+        <div class="key-scroll-area"><span id="out-ais" class="key-text">AIS-PHOON-PRO-V1.0.7-KEY</span></div>
+        <button onclick="copy('out-ais')" class="copy-btn">COPY KEY</button>
+    </div>
+
+    <div id="sim" class="section">
+        <div class="white-card">
+            <div class="card-header" onclick="toggleDetails('d-det')">
+                <div class="sim-icon" style="background:#00a1ff;">dtac</div>
+                <div style="color:#000;"><h4>Dtac ဆင်းမ်</h4><p style="font-size:0.6rem; color:#888;">နှိပ်၍ကြည့်ပါ</p></div>
+            </div>
+            <div id="d-det" class="details-content"><div class="details-text">
+● ဖုန်းငွေစစ်ရန် - *101#
+● ဖုန်းနံပါတ်စစ် - *102#
+● အင်တာနက်ပက်ကေ့စစ် - *101*1#
+● ပိုက်ဆံစား စာအိတ်ဖျက် - *137
+● မြန်မာဘာသာပြောင်း - *107*7#
+● သက်တမ်းတိုး (30ရက်/3ဘတ်) - *113*30#
+            </div></div>
+        </div>
+
+        <div class="white-card">
+            <div class="card-header" onclick="toggleDetails('t-det')">
+                <div class="sim-icon" style="background:#ff3131;">true</div>
+                <div style="color:#000;"><h4>TrueMove H</h4><p style="font-size:0.6rem; color:#888;">နှိပ်၍ကြည့်ပါ</p></div>
+            </div>
+            <div id="t-det" class="details-content"><div class="details-text">
+● ဖုန်းငွေစစ်ရန် - *123#
+● ဖုန်းနံပါတ်စစ် - *833#
+● အင်တာနက်ပက်ကေ့စစ် - *900#
+● မြန်မာဘာသာပြောင်း - 9304 (4နှိပ်)
+● သက်တမ်းတိုး (30ရက်/3ဘတ်) - *934*30#
+            </div></div>
+        </div>
+
+        <div class="white-card">
+            <div class="card-header" onclick="toggleDetails('a-det')">
+                <div class="sim-icon" style="background:#39ff14;">ais</div>
+                <div style="color:#000;"><h4>Ais 12Call</h4><p style="font-size:0.6rem; color:#888;">နှိပ်၍ကြည့်ပါ</p></div>
+            </div>
+            <div id="a-det" class="details-content"><div class="details-text">
+● ဖုန်းငွေစစ်ရန် - *121#
+● ဖုန်းနံပါတ်စစ် - *545#
+● အင်တာနက်ပက်ကေ့စစ် - *121*3#
+● သက်တမ်းတိုး (30ရက်/30ဘတ်) - *500*9#
+            </div></div>
+        </div>
+    </div>
+
+    <div id="contact" class="section">
+        <div class="contact-panel">
+            <p style="font-weight:bold; font-size:0.85rem; color:#666;">ဘာသာစကား (Language)</p>
+            <div style="display:flex; gap:10px; margin:15px 0;">
+                <button style="flex:1; padding:12px; border-radius:12px; border:none; font-weight:bold; background:#7b61ff; color:#fff;">မြန်မာ</button>
+                <button style="flex:1; padding:12px; border-radius:12px; border:none; font-weight:bold; background:#f0f0f0;">English</button>
+            </div>
+            <div class="social-btns">
+                <a href="#" class="social-icon" style="background:#1877f2;"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon" style="background:#0084ff;"><i class="fab fa-facebook-messenger"></i></a>
+                <a href="#" class="social-icon" style="background:#229ed9;"><i class="fab fa-telegram-plane"></i></a>
+            </div>
+            <h2 style="color:#333;">KSO VIP APP</h2>
+            <p style="font-size:0.8rem; color:#888; margin-bottom:5px;">ဗားရှင်း - ၁.၀၇</p>
+            <a href="#" class="download-btn"><i class="fas fa-download"></i> အက်ပ်ဒေါင်းလုဒ်လုပ်ရန်</a>
+        </div>
+    </div>
+</div>
+
+<nav class="nav">
+    <div class="nav-item active" onclick="tab('smart', this)"><i class="fas fa-wifi"></i><span>စမတ်</span></div>
+    <div class="nav-item" onclick="tab('keys', this)"><i class="fas fa-gift"></i><span>အခမဲ့</span></div>
+    <div class="nav-item" onclick="tab('sim', this)"><i class="fas fa-info-circle"></i><span>အချက်အလက်</span></div>
+    <div class="nav-item" onclick="tab('contact', this)"><i class="fas fa-headset"></i><span>ဆက်သွယ်ရန်</span></div>
+</nav>
+
 <script>
-    const langData = {
-        'my': {
-            'title-smart': 'အင်တာနက် ပက်ကေ့ချ်များ',
-            'dtac-15': '၁၅ ရက်စာ (၁၅ ဘတ်)',
-            'dtac-30': '၃၀ ရက်စာ (၃၀ ဘတ်)',
-            'true-1': '၁ ရက်စာ (၆ ဘတ်)',
-            'true-7': '၇ ရက်စာ (၂၁ ဘတ်)',
-            'true-30': '၃၀ ရက်စာ (၅၃ ဘတ်)',
-            'ais-30-1': '၃၀ ရက်စာ (၃၀ ဘတ်)',
-            'ais-30-2': '၃၀ ရက်စာ (၃၃ ဘတ်)',
-            'title-free': 'အခမဲ့ အသုံးပြုရန် (V2Ray)',
-            'dtac-free': 'DTAC အခမဲ့ဖိုင်',
-            'true-free': 'TRUE အခမဲ့ဖိုင်',
-            'ais-free': 'AIS အခမဲ့ဖိုင်',
-            'btn-copy': 'ကူးယူမည်',
-            'title-info': 'ဆင်းမ်ကတ် အချက်အလက်',
-            'info-dtac-title': 'DTAC အချက်အလက်',
-            'info-true-title': 'TRUE အချက်အလက်',
-            'info-ais-title': 'AIS အချက်အလက်',
-            'info-sub': 'အသေးစိတ် အချက်အလက်များ',
-            'title-contact': 'ကျွန်ုပ်တို့နှင့် ဆက်သွယ်ရန်',
-            'lang-title': 'ဘာသာစကား (Language)',
-            'app-ver': 'ဗားရှင်း - ၁.၀၇',
-            'btn-dl': 'အက်ပ်ဒေါင်းလုဒ်လုပ်ရန်',
-            'nav-smart': 'စမတ်',
-            'nav-free': 'အခမဲ့',
-            'nav-info': 'အချက်အလက်',
-            'nav-contact': 'ဆက်သွယ်ရန်',
-            'modal-detail': 'အသေးစိတ်',
-            'm-service': 'အခြေခံ ဝန်ဆောင်မှု',
-            'check-bal': 'ငွေစစ်ရန်',
-            'check-num': 'နံပါတ်စစ်ရန်',
-            'check-int': 'အင်တာနက်စစ်',
-            'm-renew': 'သက်တမ်းတိုးရန်',
-            '30day-3b': '၃၀ ရက် (၃ ဘတ်)',
-            'topup-method': 'ငွေဖြည့်နည်း:',
-            'call-mm': 'မြန်မာပြည်ခေါ်ရန်:'
-        },
-        'en': {
-            'title-smart': 'Internet Packages',
-            'dtac-15': '15 Days (15 Baht)',
-            'dtac-30': '30 Days (30 Baht)',
-            'true-1': '1 Day (6 Baht)',
-            'true-7': '7 Days (21 Baht)',
-            'true-30': '30 Days (53 Baht)',
-            'ais-30-1': '30 Days (30 Baht)',
-            'ais-30-2': '30 Days (33 Baht)',
-            'title-free': 'Free V2Ray Configs',
-            'dtac-free': 'DTAC Free File',
-            'true-free': 'TRUE Free File',
-            'ais-free': 'AIS Free File',
-            'btn-copy': 'Copy Key',
-            'title-info': 'SIM Information',
-            'info-dtac-title': 'DTAC Info',
-            'info-true-title': 'TRUE Info',
-            'info-ais-title': 'AIS Info',
-            'info-sub': 'View Details',
-            'title-contact': 'Contact Us',
-            'lang-title': 'Language Selection',
-            'app-ver': 'Version - 1.07',
-            'btn-dl': 'Download App',
-            'nav-smart': 'Smart',
-            'nav-free': 'Free',
-            'nav-info': 'Info',
-            'nav-contact': 'Contact',
-            'modal-detail': 'Details',
-            'm-service': 'Basic Services',
-            'check-bal': 'Check Balance',
-            'check-num': 'Check Number',
-            'check-int': 'Check Internet',
-            'm-renew': 'Extend Validity',
-            '30day-3b': '30 Days (3 Baht)',
-            'topup-method': 'Topup:',
-            'call-mm': 'Call Myanmar:'
-        }
-    };
-
-    function changeLang(lang, btn) {
-        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        document.querySelectorAll('[data-key]').forEach(el => {
-            const key = el.getAttribute('data-key');
-            if (langData[lang][key]) {
-                el.innerText = langData[lang][key];
-            }
-        });
-    }
-
-    function showP(id, el) { 
-        document.querySelectorAll('.content-section').forEach(s=>s.classList.remove('active-section')); 
-        document.getElementById(id).classList.add('active-section'); 
-        document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active')); 
-        el.classList.add('active'); 
-    }
-    function openM(id) { document.getElementById(id).style.display='flex'; }
-    function closeM(id) { document.getElementById(id).style.display='none'; }
-    function copy(id, btn) { 
-        navigator.clipboard.writeText(document.getElementById(id).innerText).then(() => {
-            const old = btn.innerText; btn.innerText = "Done!";
-            setTimeout(()=>btn.innerText = old, 1500);
-        });
-    }
     let clicks = 0;
-    function adminTrigger() {
+    const ADMIN_PASS = "225775@@@";
+
+    function adminClick() {
         clicks++;
-        if(clicks === 3) { document.getElementById('admin-modal').style.display='flex'; clicks=0; }
-        setTimeout(()=>clicks=0, 2000);
+        if (clicks === 3) { document.getElementById('pass-modal').style.display = 'flex'; clicks = 0; }
+        setTimeout(() => { clicks = 0; }, 2000);
     }
-    function hideAdmin() { document.getElementById('admin-modal').style.display='none'; }
-    function checkAdmin() {
-        if(document.getElementById('admin-pass').value === "225775@@@") {
-            const dk = prompt("New DTAC Key:"); if(dk) document.getElementById('k-dtac').innerText = dk;
-            const tk = prompt("New TRUE Key:"); if(tk) document.getElementById('k-true').innerText = tk;
-            const ak = prompt("New AIS Key:"); if(ak) document.getElementById('k-ais').innerText = ak;
-            hideAdmin();
+
+    function checkPassword() {
+        if (document.getElementById('admin-pass-input').value === ADMIN_PASS) {
+            document.getElementById('pass-modal').style.display = 'none';
+            document.getElementById('admin-panel').style.display = 'flex';
+            document.getElementById('admin-pass-input').value = "";
         } else { alert("Wrong Password!"); }
     }
+
+    function saveKeys() {
+        const t = document.getElementById('in-true').value;
+        const d = document.getElementById('in-dtac').value;
+        const a = document.getElementById('in-ais').value;
+        if(t) document.getElementById('out-true').innerText = t;
+        if(d) document.getElementById('out-dtac').innerText = d;
+        if(a) document.getElementById('out-ais').innerText = a;
+        document.getElementById('admin-panel').style.display = 'none';
+    }
+
+    function tab(id, el) {
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+        el.classList.add('active');
+    }
+
+    function toggleDetails(id) {
+        const el = document.getElementById(id);
+        const open = el.classList.contains('open');
+        document.querySelectorAll('.details-content').forEach(c => c.classList.remove('open'));
+        if(!open) el.classList.add('open');
+    }
+
+    function copy(id) {
+        navigator.clipboard.writeText(document.getElementById(id).innerText);
+        alert("Key Copied!");
+    }
+
+    function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+
+    // BG Animation
+    const canvas = document.getElementById('canvas'); const ctx = canvas.getContext('2d');
+    let pts = []; function init() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    class Pt { constructor() { this.x = Math.random()*canvas.width; this.y = Math.random()*canvas.height; this.s = Math.random()*0.3; }
+    update() { this.x += this.s; if(this.x > canvas.width) this.x = -5; }
+    draw() { ctx.fillStyle = 'rgba(123,97,255,0.1)'; ctx.beginPath(); ctx.arc(this.x, this.y, 1, 0, Math.PI*2); ctx.fill(); } }
+    for(let i=0; i<25; i++) pts.push(new Pt());
+    function anim() { ctx.clearRect(0,0,canvas.width,canvas.height); pts.forEach(p=>{p.update();p.draw();}); requestAnimationFrame(anim); }
+    window.addEventListener('resize', init); init(); anim();
 </script>
 </body>
 </html>
